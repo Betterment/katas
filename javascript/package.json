@@ -1,0 +1,15 @@
+{
+  "name": "bowling",
+  "version": "0.0.0",
+  "description": "a program for scoring a bowling game",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --reporter spec $(find . -path ./node_modules -prune -o -name '*.spec.js' -print)"
+  },
+  "repository": "",
+  "author": "sam moore",
+  "license": "BSD",
+  "dependencies": {
+    "mocha": "~1.14.0"
+  }
+}
