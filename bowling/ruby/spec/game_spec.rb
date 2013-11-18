@@ -6,7 +6,7 @@ describe Game, '#score' do
         @game = Game.new
     end
 
-    it 'should return 0 for a gutter @game' do
+    it 'should return 0 for a gutter game' do
 
         20.times { @game.roll(0) }
 
@@ -74,7 +74,7 @@ describe Game, '#score' do
         @game.score().should eq(30)
     end
 
-    it 'should return 300 for a perfect @game' do
+    it 'should return 300 for a perfect game' do
 
         12.times {
             @game.roll(10)
