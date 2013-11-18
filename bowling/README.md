@@ -1,13 +1,13 @@
-#### Problem Description
+### Problem Description
 
-###### Create a program, which, given a valid sequence of rolls for one line of American Ten-Pin Bowling, produces the total score for the game. Here are some things that the program will not do:
+#### Create a program, which, given a valid sequence of rolls for one line of American Ten-Pin Bowling, produces the total score for the game. Here are some things that the program will not do:
 
 We will not check for valid rolls.
 We will not check for correct number of rolls and frames.
 We will not provide scores for intermediate frames.
 Depending on the application, this might or might not be a valid way to define a complete story, but we do it here for purposes of keeping the kata light. I think you'll see that improvements like those above would go in readily if they were needed for real.
 
-###### We can briefly summarize the scoring for this form of bowling:
+#### We can briefly summarize the scoring for this form of bowling:
 
 Each game, or "line" of bowling, includes ten turns, or "frames" for the bowler.
 In each frame, the bowler gets up to two tries to knock down all the pins.
@@ -18,11 +18,11 @@ If he gets a spare or strike in the last (tenth) frame, the bowler gets to throw
 The game score is the total of all frame scores.
 More info on the rules at: www.topendsports.com/sport/tenpin/scoring.htm
 
-#### Clues
+### Clues
 
  - What makes this game interesting to score is the lookahead in the scoring for strike and spare. At the time we throw a strike or spare, we cannot calculate the frame score: we have to wait one or two frames to find out what the bonus is.
 
-##### Suggested Test Cases
+#### Suggested Test Cases
 
 (When scoring "X" indicates a strike, "/" indicates a spare, "-" indicates a miss)
 

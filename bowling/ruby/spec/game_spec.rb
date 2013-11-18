@@ -8,7 +8,9 @@ describe Game, '#score' do
 
     it 'should return 0 for a gutter game' do
 
-        20.times { @game.roll(0) }
+        20.times {
+            @game.roll(0)
+        }
 
         @game.score().should eq(0)
     end
