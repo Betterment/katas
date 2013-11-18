@@ -1,13 +1,13 @@
-Problem Description
+#### Problem Description
 
-Create a program, which, given a valid sequence of rolls for one line of American Ten-Pin Bowling, produces the total score for the game. Here are some things that the program will not do:
+###### Create a program, which, given a valid sequence of rolls for one line of American Ten-Pin Bowling, produces the total score for the game. Here are some things that the program will not do:
 
 We will not check for valid rolls.
 We will not check for correct number of rolls and frames.
 We will not provide scores for intermediate frames.
 Depending on the application, this might or might not be a valid way to define a complete story, but we do it here for purposes of keeping the kata light. I think you'll see that improvements like those above would go in readily if they were needed for real.
 
-We can briefly summarize the scoring for this form of bowling:
+###### We can briefly summarize the scoring for this form of bowling:
 
 Each game, or "line" of bowling, includes ten turns, or "frames" for the bowler.
 In each frame, the bowler gets up to two tries to knock down all the pins.
@@ -18,34 +18,33 @@ If he gets a spare or strike in the last (tenth) frame, the bowler gets to throw
 The game score is the total of all frame scores.
 More info on the rules at: www.topendsports.com/sport/tenpin/scoring.htm
 
-Clues
+#### Clues
 
-What makes this game interesting to score is the lookahead in the scoring for strike and spare. At the time we throw a strike or spare, we cannot calculate the frame score: we have to wait one or two frames to find out what the bonus is.
+ - What makes this game interesting to score is the lookahead in the scoring for strike and spare. At the time we throw a strike or spare, we cannot calculate the frame score: we have to wait one or two frames to find out what the bonus is.
 
-Suggested Test Cases
+##### Suggested Test Cases
 
 (When scoring "X" indicates a strike, "/" indicates a spare, "-" indicates a miss)
 
-"XXXXXXXXXXXX" (12 rolls: 12 strikes) = 10+10+10 + 10+10+10 + 10+10+10 + 10+10+10 + 10+10+10 + 10+10+10 + 10+10+10 + 10+10+10 + 10+10+10 + 10+10+10 = 300
-"9-9-9-9-9-9-9-9-9-9-" (20 rolls: 10 pairs of 9 and miss) = 9 + 9 + 9 + 9 + 9 + 9 + 9 + 9 + 9 + 9 = 90
-"5/5/5/5/5/5/5/5/5/5/5" (21 rolls: 10 pairs of 5 and spare, with a final 5) = 10+5 + 10+5 + 10+5 + 10+5 + 10+5 + 10+5 + 10+5 + 10+5 + 10+5 + 10+5 = 150
+ - `XXXXXXXXXXXX` (12 rolls: 12 strikes) = 10+10+10 + 10+10+10 + 10+10+10 + 10+10+10 + 10+10+10 + 10+10+10 + 10+10+10 + 10+10+10 + 10+10+10 + 10+10+10 = 300
+ - `9-9-9-9-9-9-9-9-9-9-` (20 rolls: 10 pairs of 9 and miss) = 9 + 9 + 9 + 9 + 9 + 9 + 9 + 9 + 9 + 9 = 90
+ - `5/5/5/5/5/5/5/5/5/5/5` (21 rolls: 10 pairs of 5 and spare, with a final 5) = 10+5 + 10+5 + 10+5 + 10+5 + 10+5 + 10+5 + 10+5 + 10+5 + 10+5 + 10+5 = 150
 
 
 ---------
 
-
 Our test suite usually ends up like:
 
-Gutter game = all zeroes, (score = 0)
-One pin down in each roll, (score = 20)
-Spare in first roll, one pin down in each other roll, (score = 10 + 1 + 18 = 29)
-Spare in last roll, one pin down in each other roll, (score = 18 + 10 + 1 = 29)
-Strike in first roll, one pin down in each other roll, (score = 10 + 1 + 1 + 18 = 30)
-Strike in last roll, one pin down in each other roll, (score = 18 + 10 + 1 + 1 = 30)
-Golden game = all strikes (score = 300)
+ - Gutter game = all zeroes, (score = 0)
+ - One pin down in each roll, (score = 20)
+ - Spare in first roll, one pin down in each other roll, (score = 10 + 1 + 18 = 29)
+ - Spare in last roll, one pin down in each other roll, (score = 18 + 10 + 1 = 29)
+ - Strike in first roll, one pin down in each other roll, (score = 10 + 1 + 1 + 18 = 30)
+ - Strike in last roll, one pin down in each other roll, (score = 18 + 10 + 1 + 1 = 30)
+ - Golden game = all strikes (score = 300)
 
 The highligts of the BowlingGameKata is:
 
-separating storing the roll results from calculating the score
-choosing a suitable data structure to store the results in
-choose a suitable iterator to calculate the score from
+ - separating storing the roll results from calculating the score
+ - choosing a suitable data structure to store the results in
+ - choose a suitable iterator to calculate the score from
