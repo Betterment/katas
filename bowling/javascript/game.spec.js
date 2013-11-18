@@ -55,7 +55,7 @@ describe('Game', function () {
             game.score().should.equal(29);
         });
 
-        it('should return 30 for a STRIKE in the LAST frame, one pin down in each other roll', function () {
+        it('should return 30 for a STRIKE in the FIRST frame, one pin down in each other roll', function () {
 
             game.roll(10);
 

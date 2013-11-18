@@ -48,7 +48,7 @@ describe Game, '#score' do
         @game.score().should eq(29)
     end
 
-    it 'should return 30 for a STRIKE in the LAST frame, one pin down in each other roll' do
+    it 'should return 30 for a STRIKE in the FIRST frame, one pin down in each other roll' do
 
         @game.roll(10)
 
