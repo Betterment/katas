@@ -8,6 +8,20 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.+'
 }
 
+sourceSets {
+    main {
+        java {
+            srcDir "src"
+        }
+    }
+
+    test {
+        java {
+            srcDir "test"
+        }
+    }
+}
+
 test {
     testLogging {
         exceptionFormat = 'full'
