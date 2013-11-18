@@ -1,7 +1,7 @@
 class Game
 
-				def score
-						0
-				end
+    def score
+            0
+    end
 
 end

@@ -1,7 +1,7 @@
 public class Game {
 
-				public int score() {
-					return 0;
-				}
+    public int score() {
+        return 0;
+    }
 
 }
