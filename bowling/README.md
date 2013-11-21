@@ -17,34 +17,3 @@ If on his first try in the frame he knocks down all the pins, this is called a "
 If he gets a spare or strike in the last (tenth) frame, the bowler gets to throw one or two more bonus balls, respectively. These bonus throws are taken as part of the same turn. If the bonus throws knock down all the pins, the process does not repeat: the bonus throws are only used to calculate the score of the final frame.
 The game score is the total of all frame scores.
 More info on the rules at: www.topendsports.com/sport/tenpin/scoring.htm
-
-### Clues
-
- - What makes this game interesting to score is the lookahead in the scoring for strike and spare. At the time we throw a strike or spare, we cannot calculate the frame score: we have to wait one or two frames to find out what the bonus is.
-
-#### Suggested Test Cases
-
-(When scoring "X" indicates a strike, "/" indicates a spare, "-" indicates a miss)
-
- - `XXXXXXXXXXXX` (12 rolls: 12 strikes) = 10+10+10 + 10+10+10 + 10+10+10 + 10+10+10 + 10+10+10 + 10+10+10 + 10+10+10 + 10+10+10 + 10+10+10 + 10+10+10 = 300
- - `9-9-9-9-9-9-9-9-9-9-` (20 rolls: 10 pairs of 9 and miss) = 9 + 9 + 9 + 9 + 9 + 9 + 9 + 9 + 9 + 9 = 90
- - `5/5/5/5/5/5/5/5/5/5/5` (21 rolls: 10 pairs of 5 and spare, with a final 5) = 10+5 + 10+5 + 10+5 + 10+5 + 10+5 + 10+5 + 10+5 + 10+5 + 10+5 + 10+5 = 150
-
-
----------
-
-Our test suite usually ends up like:
-
- - Gutter game = all zeroes, (score = 0)
- - One pin down in each roll, (score = 20)
- - Spare in first roll, one pin down in each other roll, (score = 10 + 1 + 18 = 29)
- - Spare in last roll, one pin down in each other roll, (score = 18 + 10 + 1 = 29)
- - Strike in first roll, one pin down in each other roll, (score = 10 + 1 + 1 + 18 = 30)
- - Strike in last roll, one pin down in each other roll, (score = 18 + 10 + 1 + 1 = 30)
- - Golden game = all strikes (score = 300)
-
-The highligts of the BowlingGameKata is:
-
- - separating storing the roll results from calculating the score
- - choosing a suitable data structure to store the results in
- - choose a suitable iterator to calculate the score from
