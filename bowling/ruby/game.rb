@@ -1,10 +1,26 @@
+require './frame'
+require './array'
+
 class Game
 
-    def roll(numberOfPins)
+    attr_reader :frames
+
+    def initialize
+        @frames = []
+    end
+
+    def new_frame_needed?
+        frames.empty? || frames.length < 10 && frames.last.done?
+    end
+
+    def roll(pins_felled)
+        frames << Frame.new if new_frame_needed?
+        frames.each do |f|
+            f.roll(pins_felled)
+        end
     end
 
     def score
-        0
+        frames.map(&:score).sum
     end
-
 end
