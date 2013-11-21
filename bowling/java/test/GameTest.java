@@ -12,6 +12,33 @@ public class GameTest {
     }
 
     @Test
+    public void should_return_1_for_a_single_roll_of_1() {
+
+        game.roll(1);
+
+        assertEquals(1, game.score());
+    }
+
+    @Test
+    public void should_return_2_for_two_rolls_of_1() {
+
+        game.roll(1);
+        game.roll(1);
+
+        assertEquals(2, game.score());
+    }
+
+    @Test
+    public void should_return_3_for_3_rolls_of_1() {
+
+        game.roll(1);
+        game.roll(1);
+        game.roll(1);
+
+        assertEquals(3, game.score());
+    }
+
+    @Test
     public void should_return_0_for_a_gutter_game() {
 
         for (int i = 0; i < 20; i++) {
