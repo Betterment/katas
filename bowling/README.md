@@ -1,10 +1,12 @@
 ### Problem Description
 
-#### Create a program, which, given a valid sequence of rolls for one line of American Ten-Pin Bowling, produces the total score for the game. Here are some things that the program will not do:
+#### Create a program, which, given a valid sequence of rolls for one line of American Ten-Pin Bowling, produces the total score for the game. Here are some things that the program will not be required to do:
 
- - We will not check for valid rolls.
- - We will not check for correct number of rolls and frames.
- - We will not provide scores for intermediate frames.
+ - We do not have to check for valid rolls.
+ - We do not have to check for correct number of rolls and frames.
+ - We do not have to provide scores for intermediate frames.
+
+Having said that the above things are not required, the problem becomes a bit more interesting and realistic if you do handle those cases. Completely optional.
 
 Depending on the application, this might or might not be a valid way to define a complete story, but we do it here for purposes of keeping the kata light. I think you'll see that improvements like those above would go in readily if they were needed for real.
 
