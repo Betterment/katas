@@ -1,6 +1,7 @@
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.assertEquals;
 
 public class GameTest {
 
@@ -8,6 +9,7 @@ public class GameTest {
 
     @Before
     public void setUp() {
+
         game = new Game();
     }
 
@@ -23,6 +25,7 @@ public class GameTest {
 
     @Test
     public void should_return_20_for_1_pin_on_each_roll() {
+
         for (int i = 0; i < 20; i++) {
             game.roll(1);
         }
