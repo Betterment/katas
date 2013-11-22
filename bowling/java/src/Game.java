@@ -18,18 +18,19 @@ public class Game {
     	Frame currFrame = frames[currFrameIndex];
     	currFrame.roll(numberOfPins);
 
-    	if (currFrame.isFinished()) {
-    		ArrayList<Frame> oneExtras = dependentFrames.get(0);
-    		for (Frame f : oneExtras) {
-    			f.addExtra(currFrame.getScore());
-    		}
-    		ArrayList<Frame> twoExtras = dependentFrames.get(1);
-    		for (Frame f : twoExtras) {
-    			f.addExtra(currFrame.getScore());
-    		}
-    		dependentFrames.set(0, twoExtras);
-    		dependentFrames.set(1, new ArrayList<Frame>());
+    	// set the extras
+		ArrayList<Frame> oneExtras = dependentFrames.get(0);
+		for (Frame f : oneExtras) {
+			f.addExtra(numberOfPins);
+		}
+		ArrayList<Frame> twoExtras = dependentFrames.get(1);
+		for (Frame f : twoExtras) {
+			f.addExtra(numberOfPins);
+		}
+		dependentFrames.set(0, twoExtras);
+		dependentFrames.set(1, new ArrayList<Frame>());
 
+    	if (currFrame.isFinished()) {
     		if (currFrame.isStrike()) {
     			dependentFrames.get(1).add(currFrame);
     		} else if (currFrame.isSpare()) {
@@ -43,18 +44,6 @@ public class Game {
     	int score = 0;
     	for (int i = 0; i < 10; i++) {
     		score += frames[i].getScore();
-    	}
-
-    	// RAN OUT OF TIME SO HACK AWAY TESTS
-    	if (score == 300) {
-    		return score;
-    	}
-    	if (frames[0].isSpare()) {
-    		score -= 1;
-    	} else if (frames[0].isStrike()) {
-    		score -= 2;
-    	} else if (frames[9].isSpare()) {
-    		score += 1;
     	}
         return score;
     }
