@@ -70,13 +70,8 @@ class Game
             end
         end
 
-        def reset_strike
-            @rolls_since_strike = 0
-            @strike = false
-        end
-
         def strike!
-            @strikes.push(Strike.new) unless bonus?
+            @strikes.push(Strike.new)
             next_frame
         end
 end
