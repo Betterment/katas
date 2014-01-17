@@ -5,16 +5,16 @@ package com.betterment.barseating.input;
  * @version $Id$
  * @since 1/15/14
  */
-public class Customer {
+public class CustomerInput {
 
     private final int arrivalTime;
-    private final LinePreference linePreference;
+    private final LineBehavior lineBehavior;
     private final int drinkDuration;
 
-    public Customer(int arrivalTime, LinePreference linePreference, int drinkDuration) {
+    public CustomerInput(int arrivalTime, LineBehavior lineBehavior, int drinkDuration) {
 
         this.arrivalTime = arrivalTime;
-        this.linePreference = linePreference;
+        this.lineBehavior = lineBehavior;
         this.drinkDuration = drinkDuration;
     }
 
@@ -29,9 +29,9 @@ public class Customer {
     /**
      * What behavior the customer uses when choosing a line
      */
-    public LinePreference getLinePreference() {
+    public LineBehavior getLineBehavior() {
 
-        return linePreference;
+        return lineBehavior;
     }
 
     /**

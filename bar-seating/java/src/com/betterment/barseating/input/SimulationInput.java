@@ -10,14 +10,14 @@ import com.google.common.collect.ImmutableList;
 public class SimulationInput {
 
     private final int barClosingTime;
-    private final ImmutableList<Customer> customers;
+    private final ImmutableList<CustomerInput> customerInputs;
     private final int numberOfBarSeats;
 
-    public SimulationInput(int barClosingTime, int numberOfBarSeats, Iterable<Customer> customers) {
+    public SimulationInput(int barClosingTime, int numberOfBarSeats, Iterable<CustomerInput> customers) {
 
         this.barClosingTime = barClosingTime;
         this.numberOfBarSeats = numberOfBarSeats;
-        this.customers = ImmutableList.<Customer> builder().addAll(customers).build();
+        this.customerInputs = ImmutableList.<CustomerInput> builder().addAll(customers).build();
     }
 
     public int getBarClosingTime() {
@@ -30,9 +30,9 @@ public class SimulationInput {
         return numberOfBarSeats;
     }
 
-    public ImmutableList<Customer> getCustomers() {
+    public ImmutableList<CustomerInput> getCustomerInputs() {
 
-        return customers;
+        return customerInputs;
     }
 
 }

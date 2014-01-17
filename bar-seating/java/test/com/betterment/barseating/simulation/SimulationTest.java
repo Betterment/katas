@@ -4,15 +4,15 @@ import static junit.framework.Assert.assertEquals;
 
 import java.util.List;
 
+import com.betterment.barseating.input.CustomerInput;
+import com.betterment.barseating.input.LineBehavior;
+import com.google.common.base.Function;
 import org.junit.Before;
 import org.junit.Test;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
-import com.betterment.barseating.input.Customer;
-import com.betterment.barseating.input.LinePreference;
 import com.betterment.barseating.input.SimulationInput;
 import com.google.common.collect.Lists;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /**
  * @author Mike Matsui
@@ -43,7 +43,7 @@ public class SimulationTest {
 
         givenBarClosesAt(10)
                 .withSeats(1)
-                .andCustomer(0, LinePreference.SHORT_LINES, 15);
+                .andCustomer(0, LineBehavior.SHORT_LINES, 15);
 
         thenTheBarClosesAt(15);
     }
@@ -53,10 +53,10 @@ public class SimulationTest {
 
         givenBarClosesAt(10)
                 .withSeats(1)
-                .andCustomer(0, LinePreference.REFUSE_LINES, 3)
-                .andCustomer(3, LinePreference.REFUSE_LINES, 4)
-                .andCustomer(7, LinePreference.REFUSE_LINES, 2)
-                .andCustomer(9, LinePreference.REFUSE_LINES, 2);
+                .andCustomer(0, LineBehavior.REFUSE_LINES, 3)
+                .andCustomer(3, LineBehavior.REFUSE_LINES, 4)
+                .andCustomer(7, LineBehavior.REFUSE_LINES, 2)
+                .andCustomer(9, LineBehavior.REFUSE_LINES, 2);
 
         thenTheBarClosesAt(11);
     }
@@ -66,7 +66,7 @@ public class SimulationTest {
 
         givenBarClosesAt(0)
                 .withSeats(1)
-                .andCustomer(1, LinePreference.REFUSE_LINES, 3);
+                .andCustomer(1, LineBehavior.REFUSE_LINES, 3);
 
         thenTheBarClosesAt(0);
     }
@@ -76,7 +76,7 @@ public class SimulationTest {
 
         givenBarClosesAt(0)
                 .withSeats(1)
-                .andCustomer(0, LinePreference.REFUSE_LINES, 3);
+                .andCustomer(0, LineBehavior.REFUSE_LINES, 3);
 
         thenTheBarClosesAt(3);
     }
@@ -86,7 +86,7 @@ public class SimulationTest {
 
         givenBarClosesAt(10)
                 .withSeats(1)
-                .andCustomer(5, LinePreference.REFUSE_LINES, 3);
+                .andCustomer(5, LineBehavior.REFUSE_LINES, 3);
 
         thenTheBarClosesAt(8);
     }
@@ -96,12 +96,187 @@ public class SimulationTest {
 
         givenBarClosesAt(10)
                 .withSeats(1)
-                .andCustomer(0, LinePreference.TURNOVER, 3)
-                .andCustomer(0, LinePreference.SHORT_LINES, 2)
-                .andCustomer(0, LinePreference.REFUSE_LINES, 6)
-                .andCustomer(0, LinePreference.REFUSE_LINES, 2);
+                .andCustomer(0, LineBehavior.TURNOVER, 3)
+                .andCustomer(0, LineBehavior.SHORT_LINES, 2)
+                .andCustomer(0, LineBehavior.REFUSE_LINES, 6)
+                .andCustomer(0, LineBehavior.REFUSE_LINES, 7);
 
-        thenTheBarClosesAt(10);
+        thenTheBarClosesAt(15);
+
+    }
+
+    @Test
+    public void multipleBarSeats() {
+
+        givenBarClosesAt(10)
+                .withSeats(2)
+                .andCustomer(1, LineBehavior.REFUSE_LINES, 5)
+                .andCustomer(1, LineBehavior.REFUSE_LINES, 6)
+                .andCustomer(1, LineBehavior.REFUSE_LINES, 7)
+                .andCustomer(1, LineBehavior.REFUSE_LINES, 8);
+
+        thenTheBarClosesAt(13);
+    }
+
+    @Test
+    public void shortLinesCustomerLeaveWhenFourOrMorePeopleAreInLineInFrontOfThem() {
+
+        givenBarClosesAt(10)
+                .withSeats(1)
+                .andCustomer(0, LineBehavior.SHORT_LINES, 2)
+                .andCustomer(0, LineBehavior.SHORT_LINES, 3)
+                .andCustomer(0, LineBehavior.SHORT_LINES, 4)
+                .andCustomer(0, LineBehavior.SHORT_LINES, 5)
+                .andCustomer(0, LineBehavior.SHORT_LINES, 6)
+                .andCustomer(0, LineBehavior.SHORT_LINES, 7);
+
+        thenTheBarClosesAt(20);
+    }
+
+    @Test
+    public void turnoverCustomersOnlyCareAboutThePeopleCurrentlySeated() {
+
+        givenBarClosesAt(10)
+                .withSeats(1)
+                .andCustomer(0, LineBehavior.REFUSE_LINES, 6)
+                .andCustomer(0, LineBehavior.TURNOVER, 3)
+                .andCustomer(0, LineBehavior.TURNOVER, 4);
+
+        thenTheBarClosesAt(6);
+
+    }
+
+    @Test
+    public void turnoverCustomersOnlyCareAboutPeopleCurrentlySeatedPart2() {
+
+        givenBarClosesAt(10)
+                .withSeats(1)
+                .andCustomer(0, LineBehavior.REFUSE_LINES, 4)
+                .andCustomer(0, LineBehavior.TURNOVER, 6)
+                .andCustomer(0, LineBehavior.TURNOVER, 6);
+
+        thenTheBarClosesAt(16);
+    }
+
+    @Test
+    public void refuseLinesCustomersLeaveWhenAnyCustomerIsInLineInFrontOfThem() {
+
+        givenBarClosesAt(10)
+                .withSeats(1)
+                .andCustomer(0, LineBehavior.REFUSE_LINES, 1)
+                .andCustomer(0, LineBehavior.REFUSE_LINES, 2)
+                .andCustomer(0, LineBehavior.REFUSE_LINES, 5);
+
+        thenTheBarClosesAt(3);
+    }
+
+    @Test
+    public void biggerSimulation() {
+
+        givenBarClosesAt(30)
+                .withSeats(4)
+                .andCustomer(6, LineBehavior.SHORT_LINES, 6)
+                .andCustomer(9, LineBehavior.REFUSE_LINES, 1)
+                .andCustomer(20, LineBehavior.SHORT_LINES, 9)
+                .andCustomer(12, LineBehavior.REFUSE_LINES, 1)
+                .andCustomer(27, LineBehavior.SHORT_LINES, 6)
+                .andCustomer(12, LineBehavior.SHORT_LINES, 9)
+                .andCustomer(15, LineBehavior.REFUSE_LINES, 7)
+                .andCustomer(30, LineBehavior.REFUSE_LINES, 7)
+                .andCustomer(8, LineBehavior.REFUSE_LINES, 8)
+                .andCustomer(26, LineBehavior.SHORT_LINES, 8)
+                .andCustomer(23, LineBehavior.REFUSE_LINES, 1)
+                .andCustomer(17, LineBehavior.SHORT_LINES, 3)
+                .andCustomer(12, LineBehavior.SHORT_LINES, 5)
+                .andCustomer(7, LineBehavior.SHORT_LINES, 3)
+                .andCustomer(16, LineBehavior.REFUSE_LINES, 3)
+                .andCustomer(8, LineBehavior.REFUSE_LINES, 4)
+                .andCustomer(17, LineBehavior.SHORT_LINES, 8)
+                .andCustomer(6, LineBehavior.REFUSE_LINES, 8)
+                .andCustomer(23, LineBehavior.REFUSE_LINES, 7)
+                .andCustomer(10, LineBehavior.REFUSE_LINES, 8)
+                .andCustomer(5, LineBehavior.SHORT_LINES, 9)
+                .andCustomer(4, LineBehavior.SHORT_LINES, 7)
+                .andCustomer(5, LineBehavior.REFUSE_LINES, 9)
+                .andCustomer(15, LineBehavior.REFUSE_LINES, 5)
+                .andCustomer(3, LineBehavior.REFUSE_LINES, 7)
+                .andCustomer(25, LineBehavior.SHORT_LINES, 6)
+                .andCustomer(13, LineBehavior.SHORT_LINES, 9)
+                .andCustomer(7, LineBehavior.REFUSE_LINES, 4)
+                .andCustomer(17, LineBehavior.REFUSE_LINES, 6)
+                .andCustomer(29, LineBehavior.REFUSE_LINES, 1)
+                .andCustomer(16, LineBehavior.SHORT_LINES, 2)
+                .andCustomer(2, LineBehavior.SHORT_LINES, 4)
+                .andCustomer(19, LineBehavior.SHORT_LINES, 1)
+                .andCustomer(5, LineBehavior.REFUSE_LINES, 6)
+                .andCustomer(20, LineBehavior.SHORT_LINES, 6)
+                .andCustomer(19, LineBehavior.SHORT_LINES, 9)
+                .andCustomer(12, LineBehavior.SHORT_LINES, 5)
+                .andCustomer(13, LineBehavior.REFUSE_LINES, 9)
+                .andCustomer(3, LineBehavior.REFUSE_LINES, 9)
+                .andCustomer(16, LineBehavior.SHORT_LINES, 1)
+                .andCustomer(11, LineBehavior.SHORT_LINES, 2)
+                .andCustomer(22, LineBehavior.SHORT_LINES, 1)
+                .andCustomer(23, LineBehavior.REFUSE_LINES, 2)
+                .andCustomer(10, LineBehavior.SHORT_LINES, 9)
+                .andCustomer(23, LineBehavior.SHORT_LINES, 6)
+                .andCustomer(10, LineBehavior.SHORT_LINES, 4)
+                .andCustomer(1, LineBehavior.REFUSE_LINES, 2)
+                .andCustomer(30, LineBehavior.REFUSE_LINES, 3)
+                .andCustomer(4, LineBehavior.SHORT_LINES, 1)
+                .andCustomer(25, LineBehavior.REFUSE_LINES, 9)
+                .andCustomer(14, LineBehavior.REFUSE_LINES, 4)
+                .andCustomer(13, LineBehavior.SHORT_LINES, 4)
+                .andCustomer(4, LineBehavior.SHORT_LINES, 7)
+                .andCustomer(14, LineBehavior.REFUSE_LINES, 1)
+                .andCustomer(11, LineBehavior.SHORT_LINES, 3)
+                .andCustomer(13, LineBehavior.REFUSE_LINES, 2)
+                .andCustomer(28, LineBehavior.SHORT_LINES, 5)
+                .andCustomer(30, LineBehavior.SHORT_LINES, 7)
+                .andCustomer(29, LineBehavior.SHORT_LINES, 7)
+                .andCustomer(1, LineBehavior.REFUSE_LINES, 1)
+                .andCustomer(8, LineBehavior.SHORT_LINES, 7)
+                .andCustomer(10, LineBehavior.SHORT_LINES, 7)
+                .andCustomer(20, LineBehavior.REFUSE_LINES, 4)
+                .andCustomer(9, LineBehavior.SHORT_LINES, 7)
+                .andCustomer(16, LineBehavior.SHORT_LINES, 1)
+                .andCustomer(5, LineBehavior.SHORT_LINES, 6)
+                .andCustomer(19, LineBehavior.REFUSE_LINES, 7)
+                .andCustomer(26, LineBehavior.SHORT_LINES, 8)
+                .andCustomer(24, LineBehavior.REFUSE_LINES, 3)
+                .andCustomer(29, LineBehavior.REFUSE_LINES, 7)
+                .andCustomer(27, LineBehavior.REFUSE_LINES, 4)
+                .andCustomer(8, LineBehavior.SHORT_LINES, 7)
+                .andCustomer(18, LineBehavior.REFUSE_LINES, 4)
+                .andCustomer(1, LineBehavior.SHORT_LINES, 3)
+                .andCustomer(1, LineBehavior.SHORT_LINES, 7)
+                .andCustomer(21, LineBehavior.SHORT_LINES, 5)
+                .andCustomer(20, LineBehavior.REFUSE_LINES, 3)
+                .andCustomer(27, LineBehavior.REFUSE_LINES, 3)
+                .andCustomer(10, LineBehavior.SHORT_LINES, 6)
+                .andCustomer(6, LineBehavior.REFUSE_LINES, 5)
+                .andCustomer(6, LineBehavior.SHORT_LINES, 1)
+                .andCustomer(28, LineBehavior.REFUSE_LINES, 2)
+                .andCustomer(10, LineBehavior.REFUSE_LINES, 1)
+                .andCustomer(15, LineBehavior.REFUSE_LINES, 2)
+                .andCustomer(20, LineBehavior.SHORT_LINES, 2)
+                .andCustomer(8, LineBehavior.REFUSE_LINES, 2)
+                .andCustomer(3, LineBehavior.REFUSE_LINES, 8)
+                .andCustomer(25, LineBehavior.SHORT_LINES, 8)
+                .andCustomer(1, LineBehavior.REFUSE_LINES, 1)
+                .andCustomer(23, LineBehavior.SHORT_LINES, 9)
+                .andCustomer(30, LineBehavior.REFUSE_LINES, 7)
+                .andCustomer(15, LineBehavior.REFUSE_LINES, 6)
+                .andCustomer(29, LineBehavior.SHORT_LINES, 3)
+                .andCustomer(25, LineBehavior.SHORT_LINES, 9)
+                .andCustomer(8, LineBehavior.SHORT_LINES, 8)
+                .andCustomer(10, LineBehavior.SHORT_LINES, 8)
+                .andCustomer(23, LineBehavior.SHORT_LINES, 6)
+                .andCustomer(11, LineBehavior.SHORT_LINES, 5)
+                .andCustomer(18, LineBehavior.REFUSE_LINES, 2)
+                .andCustomer(16, LineBehavior.SHORT_LINES, 1);
+
+        thenTheBarClosesAt(45);
 
     }
 
@@ -113,16 +288,17 @@ public class SimulationTest {
     private void thenTheBarClosesAt(int closingTime) {
 
         SimulationInput input = testInputBuilder.build();
-        int result = entryPoint.runSimulation(input);
+        int result = entryPoint.apply(input);
 
         assertEquals(closingTime, result);
     }
 
-    private static final SimulationEntryPoint entryPoint = new SimulationEntryPoint() {
-        @Override
-        public int runSimulation(SimulationInput input) {
+    private static final Function<SimulationInput, Integer> entryPoint = new Function<SimulationInput, Integer>() {
 
-            // you gotsta implement this
+        @Override
+        public Integer apply(SimulationInput input) {
+
+            /* you have to fill this out. this is the facade to however you decide to implement your simulation */
             throw new NotImplementedException();
         }
     };
@@ -130,7 +306,7 @@ public class SimulationTest {
     private static class InputBuilder {
         private int closingTime = 0;
         private int numberOfBarSeats = 1;
-        private List<Customer> customers = Lists.newArrayList();
+        private List<CustomerInput> customerInputs = Lists.newArrayList();
 
         public InputBuilder barClosesAt(int closingTime) {
 
@@ -144,21 +320,21 @@ public class SimulationTest {
             return this;
         }
 
-        public InputBuilder andCustomer(int arrivalTime, LinePreference linePreference, int duration) {
+        public InputBuilder andCustomer(int arrivalTime, LineBehavior lineBehavior, int duration) {
 
-            customers.add(new Customer(arrivalTime, linePreference, duration));
+            customerInputs.add(new CustomerInput(arrivalTime, lineBehavior, duration));
             return this;
         }
 
         public InputBuilder andNoCustomers() {
 
-            customers.clear();
+            customerInputs.clear();
             return this;
         }
 
         public SimulationInput build() {
 
-            return new SimulationInput(this.closingTime, this.numberOfBarSeats, customers);
+            return new SimulationInput(this.closingTime, this.numberOfBarSeats, customerInputs);
         }
     }
 }

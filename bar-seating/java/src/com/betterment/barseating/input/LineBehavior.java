@@ -5,7 +5,7 @@ package com.betterment.barseating.input;
  * @version $Id$
  * @since 1/15/14
  */
-public enum LinePreference {
+public enum LineBehavior {
     /**
      * If there are any people waiting in line to sit down when this person enters the bar, they will leave. For customers arriving at the same time, this type
      * of customer takes priority over both {@code SHORT_LINES} and {@code TURNOVER} customers.
