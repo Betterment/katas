@@ -11,7 +11,7 @@ A bar is defined as the number of seats available, and the time the bar closes. 
 
 #### Customer behavior
 ##### Applies to all customers
-If the customer arrives > the restaurant closing time, they cannot sit down. If there is an open seat for the customer, they will sit down.
+If the customer arrives > the restaurant closing time, they cannot sit down. If there is an open seat for the customer, they will sit down. Customers will also always sit down for at least unit of time.
 
 ##### Refuse line customer
 If there are any people waiting in line to sit down when this person enters the bar, they will leave. If this person becomes the first person in line however, they will stay.
