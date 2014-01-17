@@ -20,13 +20,13 @@ If there are any people waiting in line to sit down when this person enters the 
 If there are <= 3 people in line, this person will stick around.
 
 ##### Turnover customer
-At the time the customers enter the bar, this customer looks at the max time remaining for the customers sitting down. If the max(remaining time of sitting customers) <= 5 they will sit down.
+At the time the customers enter the bar, this customer looks at the max time remaining for the customers sitting down. If the max(remaining time of sitting customers) <= 5 they will stay at the bar.
 
 
 #### Timing details
 Actions happen instantly. For example, if a customer arrives at a completely open bar at time 0, they will be sitting down as of time zero. If a customer arrives at time 0, sits down for 3 time units, someone else can occupy the seat starting at time 3.
 
-Also, this is arbitrary, but to make sure everyone is making the same assumptions, the order of operations is
+This is arbitrary, but to make sure everyone is making the same assumptions, the order of operations is
  1.  Customers leave the bar
  2.  In line customers sit down
  3.  Incoming customers assess whether or not they’ll stay
@@ -40,9 +40,9 @@ Then customer C waits until A leaves, and B is seated before evaluating whether 
 
 
 #### What about people arriving at the same time?
-“Refuse lines” customers get in line and are seated before “Short lines” customers. “Short lines” customers before “Turnover” customers. If two customers of the same type arrive at the same time, the customer with the shorter seating time gets seated first. If customers of the same type and same seating time arrive at the same time, just pick one.
+```Refuse lines``` customers get in line and are seated before ```short lines``` customers. ```Short lines``` customers before “Turnover” customers. If two customers of the same type arrive at the same time, the customer with the shorter seating time gets seated first. If customers of the same type and same seating time arrive at the same time, just pick one.
 
-When customers arrive at the same time, they get served in order. For example, if all the seats at the bar are full and there is no line, and a “refuse lines” and “short lines” customer arrive at the same time, the “short lines” customer assess the bar as if the “refuse lines” is already in line.
+When customers arrive at the same time, they get served in order. For example, if all the seats at the bar are full and there is no line, and a ```refuse lines``` and ```short lines``` customer arrive at the same time, the ```short lines``` customer assess the bar as if the ```refuse lines``` customer is already in line.
 
 
 #### Examples
