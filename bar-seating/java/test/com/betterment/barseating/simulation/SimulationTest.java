@@ -4,6 +4,7 @@ import static junit.framework.Assert.assertEquals;
 
 import java.util.List;
 
+import com.betterment.barseating.input.BarSimulator;
 import com.betterment.barseating.input.CustomerInput;
 import com.betterment.barseating.input.LineBehavior;
 import com.google.common.base.Function;
@@ -298,8 +299,7 @@ public class SimulationTest {
         @Override
         public Integer apply(SimulationInput input) {
 
-            /* you have to fill this out. this is the facade to however you decide to implement your simulation */
-            throw new NotImplementedException();
+            return new BarSimulator().simulate(input);
         }
     };
 
