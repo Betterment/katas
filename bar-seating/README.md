@@ -2,7 +2,7 @@
 
 #### Write a program in Java to figure out when the last customer will leave the bar. Goal is to get customers out of the restaurant as fast as possible given the constraints.
 
- - No if-statements or for-loops are allowed
+ - No if-statements or loops (for, while do-while) are allowed. You can use constructs that abstract away the loop for you, e.g. ```com.google.common.collect.Iterables.transform(...)``` 
  - The goal is to abuse the strategy pattern and functional programming concepts to death to find a happy medium of when they’re useful
 
 A bar is defined as the number of seats available, and the time the bar closes.  A customer is defined by the time they arrive at the bar, how long they will sit down for, and their behavior on whether or not they sit down at the bar. To keep things simple, time will be represented as an integer. The bar opens at 0, and then closes at the specified time.
