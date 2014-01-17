@@ -11,7 +11,7 @@ A bar is defined as the number of seats available, and the time the bar closes. 
 
 #### Customer behavior
 ##### Applies to all customers
-If the customer arrives >= the restaurant closing time, they cannot sit down.
+If the customer arrives > the restaurant closing time, they cannot sit down.
 
 ##### Refuse line customer
 If there are any people waiting in line to sit down when this person enters the bar, they will leave.
@@ -24,14 +24,19 @@ At the time the customers enter the bar, this customer looks at the max time rem
 
 
 #### Timing details
-You can safely assume actions happen instantly. For example, if a customer arrives at a complete open bar at time 0, they will be sitting down as of time zero. If a customer arrives at time 0, sits down for 3 time units, someone else can occupy the seat starting at time 3.
+Actions happen instantly. For example, if a customer arrives at a completely open bar at time 0, they will be sitting down as of time zero. If a customer arrives at time 0, sits down for 3 time units, someone else can occupy the seat starting at time 3.
 
 Also, this is arbitrary, but to make sure everyone is making the same assumptions, the order of operations is
  1.  Customers leave the bar
  2.  In line customers sit down
  3.  Incoming customers assess whether or not they’ll stay
 
-For example, if a customer A is leaving the bar at time 3, customer B is already in line and therefore gets seated at time 3, and customer C arrives at time 3, customer C waits until A leaves, and B is seated before evaluating whether or not to get in line.
+For example, if 
+ 1. customer A is leaving the bar at time 3
+ 2. customer B is already in line and therefore gets seated at time 3
+ 3. customer C arrives at time 3
+
+Then customer C waits until A leaves, and B is seated before evaluating whether or not to get in line.
 
 
 #### What about people arriving at the same time?
