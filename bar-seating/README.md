@@ -14,7 +14,7 @@ A bar is defined as the number of seats available, and the time the bar closes. 
 If the customer arrives > the restaurant closing time, they cannot sit down. If there is an open seat for the customer, they will sit down.
 
 ##### Refuse line customer
-If there are any people waiting in line to sit down when this person enters the bar, they will leave.
+If there are any people waiting in line to sit down when this person enters the bar, they will leave. If this person becomes the first person in line however, they will stay.
 
 ##### Short lines customer
 If there are <= 3 people in line, this person will stick around.
@@ -73,17 +73,17 @@ Customers:
  1.  Arrives at 0, Sits for 3, Turnover
  2.  Arrives at 0, Sits for 2, Short lines
  3.  Arrives at 0, Sits for 6, Refuse lines
- 4.  Arrives at 0, Sits for 2, Refuse Lines
+ 4.  Arrives at 0, Sits for 7, Refuse Lines
 
 ```
-0-----1-----2-----3-----4-----5-----6-----7-----8-----9-----10-----11
+0-----1-----2-----3-----4-----5-----6-----7-----8-----9-----10-----11-----12-----13-----14-----15
 |----- #3---------------------------|
-                                    |---#4------|
-                                                |----#2-----|
+                                    |---#4---------------------------------------|
+                                                                                 |-------#2-----|
 ```
 
-Customer #4 leaves because customer #3 is sitting for more than 5 time units.
-Output: 10
+Customer #1 leaves because customer #3 is sitting for more than 5 time units.
+Output: 15
 
 
 ##### #3 The bar closes early
