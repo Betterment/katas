@@ -299,7 +299,7 @@ public class SimulationTest {
         public Integer apply(SimulationInput input) {
 
             /* you have to fill this out. this is the facade to however you decide to implement your simulation */
-            throw new NotImplementedException();
+            return new Winner().apply(input);
         }
     };
 

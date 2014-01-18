@@ -1,6 +1,8 @@
 package com.betterment.barseating.input;
 
-import com.google.common.collect.ImmutableList;
+import java.util.List;
+
+import com.google.common.collect.Lists;
 
 /**
  * @author Mike Matsui
@@ -10,14 +12,14 @@ import com.google.common.collect.ImmutableList;
 public class SimulationInput {
 
     private final int barClosingTime;
-    private final ImmutableList<CustomerInput> customerInputs;
+    private final List<CustomerInput> customerInputs;
     private final int numberOfBarSeats;
 
     public SimulationInput(int barClosingTime, int numberOfBarSeats, Iterable<CustomerInput> customers) {
 
         this.barClosingTime = barClosingTime;
         this.numberOfBarSeats = numberOfBarSeats;
-        this.customerInputs = ImmutableList.<CustomerInput> builder().addAll(customers).build();
+        this.customerInputs = Lists.newArrayList(customers);
     }
 
     public int getBarClosingTime() {
@@ -30,7 +32,7 @@ public class SimulationInput {
         return numberOfBarSeats;
     }
 
-    public ImmutableList<CustomerInput> getCustomerInputs() {
+    public List<CustomerInput> getCustomerInputs() {
 
         return customerInputs;
     }
