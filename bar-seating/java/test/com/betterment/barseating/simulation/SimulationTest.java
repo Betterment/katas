@@ -4,15 +4,15 @@ import static junit.framework.Assert.assertEquals;
 
 import java.util.List;
 
-import com.betterment.barseating.input.CustomerInput;
-import com.betterment.barseating.input.LineBehavior;
-import com.google.common.base.Function;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.betterment.barseating.input.Bar;
+import com.betterment.barseating.input.CustomerInput;
+import com.betterment.barseating.input.LineBehavior;
 import com.betterment.barseating.input.SimulationInput;
+import com.google.common.base.Function;
 import com.google.common.collect.Lists;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /**
  * @author Mike Matsui
@@ -53,10 +53,10 @@ public class SimulationTest {
 
         givenBarClosesAt(10)
                 .withSeats(1)
-                .andCustomer(0, LineBehavior.REFUSE_LINES, 3)
-                .andCustomer(3, LineBehavior.REFUSE_LINES, 4)
-                .andCustomer(7, LineBehavior.REFUSE_LINES, 2)
-                .andCustomer(9, LineBehavior.REFUSE_LINES, 2);
+                .andCustomer(0, LineBehavior.REFUSE_LINES, 3) // 0 1 2
+                .andCustomer(3, LineBehavior.REFUSE_LINES, 4) // 3 4 5 6
+                .andCustomer(7, LineBehavior.REFUSE_LINES, 2) // 7 8
+                .andCustomer(9, LineBehavior.REFUSE_LINES, 2);// 9 10
 
         thenTheBarClosesAt(11);
     }
@@ -96,9 +96,9 @@ public class SimulationTest {
 
         givenBarClosesAt(10)
                 .withSeats(1)
-                .andCustomer(0, LineBehavior.TURNOVER, 3)
-                .andCustomer(0, LineBehavior.SHORT_LINES, 2)
-                .andCustomer(0, LineBehavior.REFUSE_LINES, 6)
+                .andCustomer(0, LineBehavior.TURNOVER, 3) // 0 1 2
+                .andCustomer(0, LineBehavior.SHORT_LINES, 2) // 3 4
+                .andCustomer(0, LineBehavior.REFUSE_LINES, 6) //
                 .andCustomer(0, LineBehavior.REFUSE_LINES, 7);
 
         thenTheBarClosesAt(15);
@@ -110,10 +110,10 @@ public class SimulationTest {
 
         givenBarClosesAt(10)
                 .withSeats(2)
-                .andCustomer(1, LineBehavior.REFUSE_LINES, 5)
-                .andCustomer(1, LineBehavior.REFUSE_LINES, 6)
-                .andCustomer(1, LineBehavior.REFUSE_LINES, 7)
-                .andCustomer(1, LineBehavior.REFUSE_LINES, 8);
+                .andCustomer(1, LineBehavior.REFUSE_LINES, 5) // 1 2 3 4 5
+                .andCustomer(1, LineBehavior.REFUSE_LINES, 6) // 1 2 3 4 5 6
+                .andCustomer(1, LineBehavior.REFUSE_LINES, 7) // 6 7 8 9 10 11 12
+                .andCustomer(1, LineBehavior.REFUSE_LINES, 8);// BAILS
 
         thenTheBarClosesAt(13);
     }
@@ -123,12 +123,12 @@ public class SimulationTest {
 
         givenBarClosesAt(10)
                 .withSeats(1)
-                .andCustomer(0, LineBehavior.SHORT_LINES, 2)
-                .andCustomer(0, LineBehavior.SHORT_LINES, 3)
-                .andCustomer(0, LineBehavior.SHORT_LINES, 4)
-                .andCustomer(0, LineBehavior.SHORT_LINES, 5)
-                .andCustomer(0, LineBehavior.SHORT_LINES, 6)
-                .andCustomer(0, LineBehavior.SHORT_LINES, 7);
+                .andCustomer(0, LineBehavior.SHORT_LINES, 2) // 0 1
+                .andCustomer(0, LineBehavior.SHORT_LINES, 3) // 2 3 4
+                .andCustomer(0, LineBehavior.SHORT_LINES, 4) // 5 6 7 8
+                .andCustomer(0, LineBehavior.SHORT_LINES, 5) // 9 10 11 12 13
+                .andCustomer(0, LineBehavior.SHORT_LINES, 6) // 14 15 16 17 18 19
+                .andCustomer(0, LineBehavior.SHORT_LINES, 7);// BAILS
 
         thenTheBarClosesAt(20);
     }
@@ -138,9 +138,9 @@ public class SimulationTest {
 
         givenBarClosesAt(10)
                 .withSeats(1)
-                .andCustomer(0, LineBehavior.REFUSE_LINES, 6)
-                .andCustomer(0, LineBehavior.TURNOVER, 3)
-                .andCustomer(0, LineBehavior.TURNOVER, 4);
+                .andCustomer(0, LineBehavior.REFUSE_LINES, 6) // 0 1 2 3 4 5
+                .andCustomer(0, LineBehavior.TURNOVER, 3) // BAILS
+                .andCustomer(0, LineBehavior.TURNOVER, 4); // BAILS
 
         thenTheBarClosesAt(6);
 
@@ -151,9 +151,9 @@ public class SimulationTest {
 
         givenBarClosesAt(10)
                 .withSeats(1)
-                .andCustomer(0, LineBehavior.REFUSE_LINES, 4)
-                .andCustomer(0, LineBehavior.TURNOVER, 6)
-                .andCustomer(0, LineBehavior.TURNOVER, 6);
+                .andCustomer(0, LineBehavior.REFUSE_LINES, 4) // 0 1 2 3
+                .andCustomer(0, LineBehavior.TURNOVER, 6) // 4 5 6 7 8 9
+                .andCustomer(0, LineBehavior.TURNOVER, 6); // 10 11 12 13 14 15
 
         thenTheBarClosesAt(16);
     }
@@ -163,9 +163,9 @@ public class SimulationTest {
 
         givenBarClosesAt(10)
                 .withSeats(1)
-                .andCustomer(0, LineBehavior.REFUSE_LINES, 1)
-                .andCustomer(0, LineBehavior.REFUSE_LINES, 2)
-                .andCustomer(0, LineBehavior.REFUSE_LINES, 5);
+                .andCustomer(0, LineBehavior.REFUSE_LINES, 1) // 0
+                .andCustomer(0, LineBehavior.REFUSE_LINES, 2) // 1 2
+                .andCustomer(0, LineBehavior.REFUSE_LINES, 5); // BAILS
 
         thenTheBarClosesAt(3);
     }
@@ -298,8 +298,8 @@ public class SimulationTest {
         @Override
         public Integer apply(SimulationInput input) {
 
-            /* you have to fill this out. this is the facade to however you decide to implement your simulation */
-            throw new NotImplementedException();
+            Bar bar = new Bar(input);
+            return bar.run();
         }
     };
 
