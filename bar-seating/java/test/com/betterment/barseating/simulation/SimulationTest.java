@@ -4,15 +4,15 @@ import static junit.framework.Assert.assertEquals;
 
 import java.util.List;
 
-import com.betterment.barseating.input.CustomerInput;
-import com.betterment.barseating.input.LineBehavior;
-import com.google.common.base.Function;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.betterment.barseating.Simulation;
+import com.betterment.barseating.input.CustomerInput;
+import com.betterment.barseating.input.LineBehavior;
 import com.betterment.barseating.input.SimulationInput;
+import com.google.common.base.Function;
 import com.google.common.collect.Lists;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /**
  * @author Mike Matsui
@@ -299,7 +299,7 @@ public class SimulationTest {
         public Integer apply(SimulationInput input) {
 
             /* you have to fill this out. this is the facade to however you decide to implement your simulation */
-            throw new NotImplementedException();
+            return new Simulation().runSimulation(input);
         }
     };
 
