@@ -22,8 +22,11 @@ I will ask two people to talk for 5-10 minutes about their solution -- have fun!
 
 #### References for Sudoku Strategy (from Peter Norvig):
 [http://www.scanraid.com/BasicStrategies.htm](http://www.scanraid.com/BasicStrategies.htm)
+
 [http://www.sudokudragon.com/sudokustrategy.htm](http://www.sudokudragon.com/sudokustrategy.htm)
+
 [http://www.krazydad.com/blog/2005/09/29/an-index-of-sudoku-strategies/](http://www.krazydad.com/blog/2005/09/29/an-index-of-sudoku-strategies/)
+
 [http://www2.warwick.ac.uk/fac/sci/moac/currentstudents/peter_cock/python/sudoku/](http://www2.warwick.ac.uk/fac/sci/moac/currentstudents/peter_cock/python/sudoku/)
 
 Source:
