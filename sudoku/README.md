@@ -7,11 +7,11 @@ A well constructed Sudoku puzzle has a unique solution and can be solved by logi
 #### Objectives
 
 This kata has several goals:
-1) Solve a problem for which TDD is not particularly useful.
-2) Allow flexibility is data structures by providing puzzles as text files.
-3) Promote diversity in implementations and encourage unique techniques.
-4) Encourage use of different languages and language features.
-5) Work in small teams!
+1. Solve a problem for which TDD is not particularly useful.
+2. Allow flexibility is data structures by providing puzzles as text files.
+3. Promote diversity in implementations and encourage unique techniques.
+4. Encourage use of different languages and language features.
+5. Work in small teams!
 
 Most importantly, think creatively. A half-complete attempt that uses interesting technique is more interesting for this exercise. Does your solution perform differently for puzzles of varied logical difficulty? What trade-offs did you consider in your design?
 
