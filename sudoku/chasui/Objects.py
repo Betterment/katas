@@ -42,7 +42,7 @@ class Dimension:
 
 
 def setup_relationships(horizontal_dimensions):
-    for index in range(0, 9) :
+    for index in range(0, 9):
         pass
 
 
