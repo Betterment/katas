@@ -14,7 +14,7 @@ This kata has several goals:
 4. Encourage use of different languages and language features.
 5. Work in small teams!
 
-Most importantly, think creatively. A half-complete attempt that uses interesting technique is more interesting for this exercise. Does your solution perform differently for puzzles of varied logical difficulty? What trade-offs did you consider in your design?
+Most importantly, think creatively: *a half-complete attempt that uses interesting technique is more interesting for this exercise*. Does your solution perform differently for puzzles of varied logical difficulty? What trade-offs did you consider in your design?
 
 The puzzles I have selected are not especially difficult. If you finish an interesting implementation with time to spare, I have harder puzzles to give your program.
 
