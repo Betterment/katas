@@ -7,6 +7,7 @@ A well constructed Sudoku puzzle has a unique solution and can be solved by logi
 #### Objectives
 
 This kata has several goals:
+
 1. Solve a problem for which TDD is not particularly useful.
 2. Allow flexibility is data structures by providing puzzles as text files.
 3. Promote diversity in implementations and encourage unique techniques.
