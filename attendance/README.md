@@ -19,7 +19,8 @@ The principal would like to have a program that can read all the 3 above files a
 
 `LastName FirstName Gender Birthdate Grade FavoriteColor`
 
-In the following 3 types of orderings
-Output 1 – sorted by gender (females before males) then by last name ascending.
-Output 2 – sorted by birth date, ascending.
-Output 3 – sorted by last name, descending.
+In the following 3 types of orderings:
+
+1. sorted by gender (females before males) then by last name ascending.
+1. sorted by birth date, ascending.
+1. sorted by last name, descending.
