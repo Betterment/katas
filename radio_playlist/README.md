@@ -2,12 +2,18 @@ Last week one of the local radio stations was having a "Barrel of Monkey" aftern
 
 So, for example, a sample (eclectic) Barrel of Monkeys playlist might be:
 
-Peace Train
-No More "I Love You's"
-Super Trooper
-Rock Me, Amadeus
+Peace Train 
+
+No More "I Love You's" 
+
+Super Trooper 
+
+Rock Me, Amadeus 
+
 Song of the South
+
 Hooked on a Feeling
+
 Go Tell it on the Mountain
 ...
 (See how each song name begins with the last letter of the song before it?)
