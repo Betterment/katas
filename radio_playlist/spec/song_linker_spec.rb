@@ -12,15 +12,39 @@ describe SongLinker do
 
 			song_linker = SongLinker.new songs
 
-			expect(song_linker.link('hello', 'goodbye')).to eq(songs)
+			expect(song_linker.link('hello', 'goodbye')).to eq songs
 		end
 
-		it 'can return sequence from a out of order song bank' do
+		it 'can return sequence from a out of order acyclic song bank' do
 			songs = %w(og goodbye hello)
 
 			song_linker = SongLinker.new songs
 
 			expect(song_linker.link('hello', 'goodbye')).to eq %w(hello og goodbye) 
+		end
+
+		it 'can determine if two songs are not linked' do
+			song_linker = SongLinker.new nil
+
+			expect(song_linker.are_linked('hello', 'goodbye')).to eq false
+		end
+
+		it 'can determine if two songs are linked' do
+			song_linker = SongLinker.new nil
+
+			expect(song_linker.are_linked('ab', 'bc')).to eq true
+		end
+
+		it 'can find a linked song from a given song' do
+			songs = %w(og goodbye hello)
+			song_linker = SongLinker.new songs
+			expect(song_linker.next_songs_from('ah')).to eq %w(hello)
+		end
+
+		it 'can find multiple linked songs from a given song' do
+			songs = %w(og goodbye hello hi how)
+			song_linker = SongLinker.new songs
+			expect(song_linker.next_songs_from('ah')).to eq %w(hello hi how)
 		end
 	end
 end
