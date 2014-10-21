@@ -5,18 +5,25 @@ class SongLinker
 		@song_bank = song_bank
 	end
 
-	def link(first, last)
+	def link_all(first, last, depth = 0)
 		paths = [] 
-		if (are_linked(first, last))
-			return [first, last]
+		if depth > song_bank.length
+			paths
+		elsif (are_linked(first, last))
+			paths << [first, last]
 		else 
-			paths << first
 			next_songs_from(first).each do |next_song|
-				paths += link(next_song, last)
+				link_all(next_song, last, depth + 1).each do |rest|
+					paths << [first] + rest
+				end
 			end
 		end
 
 		paths
+	end
+
+	def link(first, last)
+		link_all(first, last).first
 	end
 
 	def are_linked(song_a, song_b)

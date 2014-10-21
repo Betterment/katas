@@ -23,6 +23,43 @@ describe SongLinker do
 			expect(song_linker.link('hello', 'goodbye')).to eq %w(hello og goodbye) 
 		end
 
+		it 'can return a sequence from multiple connecting songs' do
+			songs = %w(og goodbye omg hello)
+
+			song_linker = SongLinker.new songs
+
+			expect(song_linker.link('hello', 'goodbye')).to eq %w(hello og goodbye) 
+		end
+
+		it 'can return a sequence from multiple connecting songs' do
+			songs = %w(of goodbye omg hello)
+
+			song_linker = SongLinker.new songs
+
+			expect(song_linker.link('hello', 'goodbye')).to eq %w(hello omg goodbye) 
+		end
+	end
+
+	describe "#link_all" do
+		it "returns only valid paths in the face of dead ends" do
+			songs = %w(hello of og goodbye)
+
+			song_linker = SongLinker.new songs
+
+			expect(song_linker.link_all('hello', 'goodbye')).to eq [%w(hello og goodbye)]
+		end
+
+		it "returns only valid paths in the face of cycles" do
+			songs = %w(og go blab)
+
+			song_linker = SongLinker.new songs
+
+			expect(song_linker.link_all('og', 'blab')).to eq []
+		end
+
+	end
+
+	describe '#are_linked' do
 		it 'can determine if two songs are not linked' do
 			song_linker = SongLinker.new nil
 
@@ -34,6 +71,9 @@ describe SongLinker do
 
 			expect(song_linker.are_linked('ab', 'bc')).to eq true
 		end
+	end
+
+	describe '#next_songs_from' do
 
 		it 'can find a linked song from a given song' do
 			songs = %w(og goodbye hello)
